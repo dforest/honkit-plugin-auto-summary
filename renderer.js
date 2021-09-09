@@ -2,9 +2,10 @@ const Maybe = require('folktale/maybe')
 
 const print = str => x => { console.log(str, x); return x }
 
-const dirEntry = readmeFilename => ([ dirPath, hasReadme ]) => {
+const dirEntry = readmeFilename => ([ dirPath, parsedReadme ]) => {
   const depth = getDirDepth(dirPath)
-  const title = getDirTitle(dirPath)
+  const title = getFileTitle(parsedReadme).getOrElse(getDirTitle(dirPath))
+  const hasReadme = !Maybe.Nothing.hasInstance(parsedReadme)
 
   if (!hasReadme && depth === 0) {
     return sectionEntries(title)
@@ -35,7 +36,8 @@ const fileEntry = isReadme => ([ filePath, parsedMarkdown ]) => {
   if (isReadme(filePath)) return
 
   const depth = getFileDepth(filePath)
-  const fileTitle = formatTitle(getFileName(filePath))
+  const fileTitle = getFileTitle(parsedMarkdown)
+    .getOrElse(formatTitle(getFileName(filePath)))
 
   return linkEntries(depth, fileTitle, filePath)
 }

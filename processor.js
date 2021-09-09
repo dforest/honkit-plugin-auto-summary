@@ -15,7 +15,7 @@ module.exports = config => tree =>
       const fileResult =
         file.chain(
           file => parseMarkdown(file),
-          ([ path, x ]) => Task.of(Dir(path, x))
+          dir => parseReadme(dir)
         )
       return fileResult
     }
@@ -31,4 +31,15 @@ const parseMarkdown = ([ path, content ]) => {
   return parseTask(content)
     .map(Maybe.Just)
     .map(parsed => File(path, parsed))
+}
+
+const parseReadme = ([ path, content ]) => {
+  if (!content.length) {
+    const file = Dir(path, Maybe.Nothing())
+    return Task.of(file)
+  }
+
+  return parseTask(content)
+    .map(Maybe.Just)
+    .map(parsed => Dir(path, parsed))
 }

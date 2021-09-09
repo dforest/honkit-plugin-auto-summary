@@ -5,6 +5,8 @@ const path = require('path')
 const Task = require('folktale/concurrency/task')
 
 const { fromPath } = require('./files')
+const Maybe = require('folktale/maybe/maybe')
+const { Nothing } = require('folktale/maybe')
 
 const print = str => x => { console.log(str, x); return x }
 
@@ -57,8 +59,10 @@ const writeSummaryFile = config => summaryContent => {
 // Config -> [ String, _ ] -> Bool
 const isReadmeExistingInDir = config => ([ dirPath ]) => {
   const readmePath = path.join(config.root, dirPath, config.readmeFilename)
-  const res = fs.existsSync(readmePath)
-  return res
+  if(fs.existsSync(readmePath)) {
+    return fs.readFileSync(readmePath, { encoding: 'utf8' })
+  }
+  return ""
 }
 
 module.exports = {

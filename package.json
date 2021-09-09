@@ -1,30 +1,33 @@
 {
-  "name": "gitbook-plugin-summary",
+  "name": "honkit-plugin-auto-summary",
   "version": "1.1.0",
-  "description": "Gitbook plugin to auto-generate SUMMARY.md",
+  "description": "Honkit plugin to auto-generate SUMMARY.md",
   "main": "index.js",
   "scripts": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/julianxhokaxhiu/gitbook-plugin-summary.git"
+    "url": "git+https://github.com/dforest/honkit-plugin-auto-summary"
   },
   "keywords": [
     "gitbook",
     "gitbook-plugin",
-    "gitbook-summary"
+    "gitbook-summary",
+    "honkit",
+    "honkit-plugin",
+    "honkit-summary"
   ],
   "author": {
-    "name": "Julian Xhokaxhiu",
+    "name": "Keita Mori",
     "email": "",
-    "url": "https://julianxhokaxhiu.com/"
+    "url": "https://mkitlab.com"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/julianxhokaxhiu/gitbook-plugin-summary/issues"
+    "url": "https://github.com/dforest/honkit-plugin-auto-summary/issues"
   },
-  "homepage": "https://github.com/julianxhokaxhiu/gitbook-plugin-summary#readme",
+  "homepage": "https://github.com/dforest/honkit-plugin-auto-summary#readme",
   "engines": {
-    "gitbook": ">=3.2.3"
+    "honkit": ">=3.6.20"
   },
   "dependencies": {
     "fantasy-identities": "0.0.1",
